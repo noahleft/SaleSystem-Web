@@ -15,6 +15,11 @@ def create_db(name):
                      NAME  TEXT NOT NULL,
                      UNIQUE(NAME));
                  ''')
+  cursor.execute('''CREATE TABLE IF NOT EXISTS form
+                    (ID    INTEGER PRIMARY KEY AUTOINCREMENT,
+                     NAME  TEXT NOT NULL,
+                     UNIQUE(NAME));
+                 ''')
   conn.commit()
   return conn
 
