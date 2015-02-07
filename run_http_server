@@ -1,7 +1,7 @@
 #!/bin/bash
 echo 'Change directory to ...'
-cd /Users/noahleft/Develop/Sales-System
+cd /Users/noahleft/Sites/Sales-System
 pwd
 echo 'Start http server ...'
-python3 -m http.server --cgi 8000  &
-
+open -a /Applications/Google\ Chrome.app/ local.webloc
+python3 -m http.server --cgi 8000  
