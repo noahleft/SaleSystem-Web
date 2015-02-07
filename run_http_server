@@ -1,2 +1,7 @@
 #!/bin/bash
-python3 -m http.server --cgi 8000
+echo 'Change directory to ...'
+cd /Users/noahleft/Develop/Sales-System
+pwd
+echo 'Start http server ...'
+python3 -m http.server --cgi 8000  &
+
