@@ -1,4 +1,4 @@
-#!/usr/local/bin/python3
+#!/usr/bin/env python3
 
 print("Content-type: text/html",end='\n\n')
 
@@ -9,10 +9,20 @@ company_id=form.getvalue('comp_id')
 product_id=form.getvalue('prod_id')
 form_id=form.getvalue('form_id')
 sqlpath=form.getvalue('sqlpath')
+deliver=form.getvalue('deliver_date')
+unit_price=form.getvalue('unit_price')
+quantity=form.getvalue('quantity')
+
+from datetime import date
+today=date.today().isoformat()
+
 
 from database import insert_db
 from database import link_db
-#insert_db(link_db(sqlpath),'record',[company_name])
+insert_db(link_db(sqlpath),'record', \
+          list(map(lambda x:'"'+str(x)+'"', \
+          [company_id,product_id,form_id,today,deliver,unit_price,quantity])), \
+          table_cols=['COMP_ID','PROD_ID','FORM_ID','CREATED_DATE','DELIVER_DATE','UNIT_PRICE','QUANTITY'])
 
 print('''
 <!DOCTYPE html>

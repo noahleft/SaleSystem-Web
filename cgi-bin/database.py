@@ -38,10 +38,10 @@ def link_db(name):
   return conn
 
 
-def insert_db(conn,table_name,element):
+def insert_db(conn,table_name,element,table_cols=["name"]):
   cursor=conn.cursor()
   cursor.execute('INSERT OR IGNORE INTO '+table_name+' '+ \
-                 '(NAME) VALUES ' + \
-                 '("'+element[0]+'");')
+                 '('+','.join(table_cols)+') VALUES ' + \
+                 '('+','.join(element)+');')
   conn.commit()
 
