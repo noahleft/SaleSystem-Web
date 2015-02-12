@@ -3,5 +3,4 @@ echo 'Change directory to ...'
 cd /Users/noahleft/Sites/Sales-System
 pwd
 echo 'Start http server ...'
-open -a /Applications/Google\ Chrome.app/ local.webloc
 python3 -m http.server --cgi 8000  
