@@ -20,6 +20,16 @@ def create_db(name):
                      NAME  TEXT NOT NULL,
                      UNIQUE(NAME));
                  ''')
+  cursor.execute('''CREATE TABLE IF NOT EXISTS record
+                    (ID    INTEGER PRIMARY KEY AUTOINCREMENT,
+                     COMP_ID   INTEGER NOT NULL,
+                     PROD_ID   INTEGER NOT NULL,
+                     FORM_ID   INTEGER NOT NULL,
+                     CREATED_DATE DATETIME NOT NULL,
+                     DELIVER_DATE DATETIME NOT NULL,
+                     UNIT_PRICE INTEGER NOT NULL,
+                     QUANTITY   INTEGER NOT NULL);
+                 ''')
   conn.commit()
   return conn
 

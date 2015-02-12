@@ -31,20 +31,22 @@ else:
   conn=link_db(SQL_path)
 
 cursor=conn.cursor()
-showList=['name']
+showList=['id','name']
 cursor.execute('SELECT '+','.join(showList)+' FROM form')
 data=cursor.fetchall()
 
 print('<table>')
 print('<tr>')
-print(''.join(list(map(lambda x:'<th>'+x+'</th>',showList))))
+print(''.join(list(map(lambda x:'<th>'+x+'</th>',showList[1:]))))
 print('</tr>')
 for row in data:
   print('<tr>')
-  for ele in row:
+  href='ListRecord.cgi?form_id='+str(row[0])
+  for ele in row[1:]:
     print('<td>')
+    print('<a href="'+href+'">')
     print(ele)
-    print('</td>')
+    print('</a></td>')
   print('</tr>')
 print('</table>')
 
