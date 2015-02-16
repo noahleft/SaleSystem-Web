@@ -10,7 +10,7 @@ sqlpath=form.getvalue('sqlpath')
 
 from database import insert_db
 from database import link_db
-insert_db(link_db(sqlpath),'form',[company_name])
+insert_db(link_db(sqlpath),'form',['"'+company_name+'"'])
 
 print('''
 <!DOCTYPE html>

@@ -37,7 +37,7 @@ data=cursor.fetchall()
 
 print('<table>')
 print('<tr>')
-print(''.join(list(map(lambda x:'<th>'+x+'</th>',showList[1:]))))
+print(''.join(list(map(lambda x:'<th>'+x+'</th>',showList[1:]+['bill']))))
 print('</tr>')
 for row in data:
   print('<tr>')
@@ -47,6 +47,8 @@ for row in data:
     print('<a href="'+href+'">')
     print(ele)
     print('</a></td>')
+  href='DumpRecord.cgi?form_id='+str(row[0])
+  print('<td><a href="'+href+'">產生</a></td>')
   print('</tr>')
 print('</table>')
 

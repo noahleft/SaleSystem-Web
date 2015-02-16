@@ -6,6 +6,7 @@ from config import SQL_path
 import cgi
 form=cgi.FieldStorage()
 form_id=form.getvalue('form_id')
+company_id=form.getvalue('company_id')
 import sqlite3
 
 from os.path import isfile
@@ -27,6 +28,8 @@ def convertToDict(DataList):
 cursor=conn.cursor()
 cursor.execute('SELECT NAME FROM form where id='+str(form_id))
 formName=cursor.fetchall()[0][0]
+cursor.execute('SELECT NAME FROM company where id='+str(company_id))
+companyName=cursor.fetchall()[0][0]
 
 print("Content-type: text/html",end='\n\n')
 print("""
@@ -42,16 +45,13 @@ print("""
 <nav id="nav01"></nav>""")
 print("""
 <div id="main">
-  <h1>出貨記錄 """+str(formName)+'</h1>')
+  <h1>應收帳款 """+str(companyName)+' '+str(formName)+'</h1>')
 
 
 
 showList=['COMP_ID','PROD_ID','DELIVER_DATE','UNIT_PRICE','QUANTITY']
-cursor.execute('SELECT '+','.join(showList)+' FROM record WHERE form_id='+str(form_id)+' ORDER BY DELIVER_DATE')
+cursor.execute('SELECT '+','.join(showList)+' FROM record WHERE form_id='+str(form_id)+' and comp_id='+str(company_id))
 data=cursor.fetchall()
-cursor.execute('SELECT ID,NAME FROM company')
-companyList=cursor.fetchall()
-companyDict=convertToDict(companyList)
 cursor.execute('SELECT ID,NAME FROM product')
 productList=cursor.fetchall()
 productDict=convertToDict(productList)
@@ -59,18 +59,26 @@ productDict=convertToDict(productList)
 
 print('<table>')
 print('<tr>')
-showChList=['公司','日期','品項','單價','數量']
+showChList=['日期','品項','數量','單價','小計']
 print(''.join(list(map(lambda x:'<th>'+x+'</th>',showChList))))
 print('</tr>')
+total_price=0
 for row in data:
-  rowStrings=['<tr><td>'+str(companyDict[row[0]])+'</td>']
+  unit_price=float(row[3])
+  quantity=float(row[4])
+  price=unit_price*quantity
+  total_price+=price
+  rowStrings=['<tr>']
   rowStrings+=['<td>'+str(row[2])+'</td>']
   rowStrings+=['<td>'+str(productDict[row[1]])+'</td>']
-  rowStrings+=['<td>'+str(row[3])+'</td>']
   rowStrings+=['<td>'+str(row[4])+'</td>']
+  rowStrings+=['<td>'+str(row[3])+'</td>']
+  rowStrings+=['<td>'+str(price)+'</td>']
   rowStrings+=['</tr>']
   print(''.join(rowStrings))
 print('</table>')
+
+print('總計:',int(total_price))
 
 ############################
 
@@ -79,25 +87,6 @@ companyList=cursor.fetchall()
 cursor.execute('SELECT id,name from product;')
 productList=cursor.fetchall()
 
-print('<br>'*3)
-print('<h1>新增記錄</h1>')
-print("""<form action='AddRecord.cgi'>
-         <input type='hidden' name='sqlpath' value='"""
-         +SQL_path+"""' readonly>
-         <input type='hidden' name='form_id' value='"""
-         +str(form_id)+"""' readonly>公司
-         <select name='comp_id'>"""
-         +'\n'.join(list(map(lambda x:'<option value="'+str(x[0])+'">'+str(x[1])+'</option>',companyList)))
-         +"""</select><br>產品
-         <select name='prod_id'>"""
-         +'\n'.join(list(map(lambda x:'<option value="'+str(x[0])+'">'+str(x[1])+'</option>',productList)))
-         +"""</select><br>單價
-         <input type='number' name='unit_price' step='any'><br>數量
-         <input type='number' name='quantity'><br>日期
-         <input type='date'   name='deliver_date'><br>
-         <input type='submit' value='更新'>
-         </form>""")
-print('<br>'*3)
 
 print("""<footer id="foot01"></footer>
 </div>

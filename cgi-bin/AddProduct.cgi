@@ -5,12 +5,12 @@ print("Content-type: text/html",end='\n\n')
 import cgi
 form=cgi.FieldStorage()
 
-company_name=form.getvalue('pro_name')
+product_name=form.getvalue('pro_name')
 sqlpath=form.getvalue('sqlpath')
 
 from database import insert_db
 from database import link_db
-insert_db(link_db(sqlpath),'product',[company_name])
+insert_db(link_db(sqlpath),'product',['"'+product_name+'"'])
 
 print('''
 <!DOCTYPE html>
