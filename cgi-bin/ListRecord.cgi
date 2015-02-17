@@ -79,24 +79,42 @@ companyList=cursor.fetchall()
 cursor.execute('SELECT id,name from product;')
 productList=cursor.fetchall()
 
+def genOptions(dataList,initial=1):
+  strList=[]
+  optionStr=lambda x:'<option value="'+str(x[0])+'">'+str(x[1])+'</option>'
+  optionStrSelected=lambda x:'<option value="'+str(x[0])+'" selected>'+str(x[1])+'</option>'
+  for data in dataList:
+    if data[0]==initial:
+      strList.append(optionStrSelected(data))
+    else:
+      strList.append(optionStr(data))
+  return '\n'.join(list(strList))
+
+if form.getvalue('comp_id'):
+  comp_initial=int(form.getvalue('comp_id'))
+else:
+  comp_initial=1
+if form.getvalue('prod_id'):
+  prod_initial=int(form.getvalue('prod_id'))
+else:
+  prod_initial=1
+if form.getvalue('unit_price'):
+  unitStr=' value='+str(form.getvalue('unit_price'))+' '
+else:
+  unitStr=''
+
 print('<br>'*3)
 print('<h1>新增記錄</h1>')
-print("""<form action='AddRecord.cgi'>
-         <input type='hidden' name='sqlpath' value='"""
-         +SQL_path+"""' readonly>
-         <input type='hidden' name='form_id' value='"""
-         +str(form_id)+"""' readonly>公司
-         <select name='comp_id'>"""
-         +'\n'.join(list(map(lambda x:'<option value="'+str(x[0])+'">'+str(x[1])+'</option>',companyList)))
-         +"""</select><br>產品
-         <select name='prod_id'>"""
-         +'\n'.join(list(map(lambda x:'<option value="'+str(x[0])+'">'+str(x[1])+'</option>',productList)))
-         +"""</select><br>單價
-         <input type='number' name='unit_price' step='any'><br>數量
-         <input type='number' name='quantity'><br>日期
-         <input type='date'   name='deliver_date'><br>
-         <input type='submit' value='更新'>
-         </form>""")
+print("<form action='AddRecord.cgi' name='AddRecord'>\n"+ \
+      "<input type='hidden' name='sqlpath' value='"+SQL_path+"' readonly>\n"+ \
+      "<input type='hidden' name='form_id' value='"+str(form_id)+"' readonly>\n"+ \
+      "公司<select name='comp_id'>\n"+genOptions(companyList,comp_initial)+"</select><br>\n"+ \
+      "產品<select name='prod_id'>\n"+genOptions(productList,prod_initial)+"</select><br>\n"+ \
+      "單價<input type='number' name='unit_price' step='any' readonly"+unitStr+">\n"+ \
+      "<input type='submit' name='load' value='讀取'><br>"+ \
+      "數量<input type='number' name='quantity'><br>\n"+ \
+      "日期<input type='date'   name='deliver_date'><br>\n"+ \
+      "<input type='submit' name='update' value='更新'></form>")
 print('<br>'*3)
 
 print("""<footer id="foot01"></footer>
@@ -106,6 +124,7 @@ print("""<footer id="foot01"></footer>
 
 </body>
 </html>""")
+
 
 
 

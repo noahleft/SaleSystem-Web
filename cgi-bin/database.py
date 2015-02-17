@@ -20,15 +20,21 @@ def create_db(name):
                      NAME  TEXT NOT NULL,
                      UNIQUE(NAME));
                  ''')
+  cursor.execute('''CREATE TABLE IF NOT EXISTS unitprice
+                    (ID       INTEGER PRIMARY KEY AUTOINCREMENT,
+                     COMP_ID  INTEGER NOT NULL,
+                     PROD_ID  INTEGER NOT NULL,
+                     UNIT_PRICE REAL  NOT NULL);
+                 ''')
   cursor.execute('''CREATE TABLE IF NOT EXISTS record
-                    (ID    INTEGER PRIMARY KEY AUTOINCREMENT,
-                     COMP_ID   INTEGER NOT NULL,
-                     PROD_ID   INTEGER NOT NULL,
-                     FORM_ID   INTEGER NOT NULL,
+                    (ID           INTEGER  PRIMARY KEY AUTOINCREMENT,
+                     COMP_ID      INTEGER  NOT NULL,
+                     PROD_ID      INTEGER  NOT NULL,
+                     FORM_ID      INTEGER  NOT NULL,
                      CREATED_DATE DATETIME NOT NULL,
                      DELIVER_DATE DATETIME NOT NULL,
-                     UNIT_PRICE INTEGER NOT NULL,
-                     QUANTITY   INTEGER NOT NULL);
+                     UNIT_PRICE   REAL     NOT NULL,
+                     QUANTITY     INTEGER  NOT NULL);
                  ''')
   conn.commit()
   return conn
@@ -45,3 +51,14 @@ def insert_db(conn,table_name,element,table_cols=["name"]):
                  '('+','.join(element)+');')
   conn.commit()
 
+def update_db(conn,table_name,element,table_cols,checkList,setList):
+  cursor=conn.cursor()
+  cursor.execute('SELECT * FROM '+table_name+' WHERE '+
+                 ' and '.join(list(map(lambda x:str(x[0])+'='+str(x[1]),checkList))))
+  if cursor.fetchall():
+    cursor.execute('UPDATE '+table_name+' SET '+
+    ','.join(list(map(lambda x:str(x[0])+'='+str(x[1]),setList)))+
+    ' WHERE '+' and '.join(list(map(lambda x:str(x[0])+'='+str(x[1]),checkList))))
+    conn.commit()
+  else:
+    insert_db(conn,table_name,element,table_cols)

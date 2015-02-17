@@ -62,7 +62,7 @@ print(''.join(list(map(lambda x:'<th>'+x+'</th>',showChList))))
 print('</tr>')
 for row in data:
   print('<tr>')
-  href='Bill.cgi?form_id='+str(row[0])+'&company_id='+str(row[0])
+  href='Bill.cgi?form_id='+str(form_id)+'&company_id='+str(row[0])
   print('<td><a href="'+href+'">')
   print(companyDict[row[0]])
   print('</a></td>')

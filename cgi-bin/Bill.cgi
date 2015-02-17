@@ -50,7 +50,7 @@ print("""
 
 
 showList=['COMP_ID','PROD_ID','DELIVER_DATE','UNIT_PRICE','QUANTITY']
-cursor.execute('SELECT '+','.join(showList)+' FROM record WHERE form_id='+str(form_id)+' and comp_id='+str(company_id))
+cursor.execute('SELECT '+','.join(showList)+' FROM record WHERE form_id='+str(form_id)+' and comp_id='+str(company_id)+' ORDER BY DELIVER_DATE')
 data=cursor.fetchall()
 cursor.execute('SELECT ID,NAME FROM product')
 productList=cursor.fetchall()
