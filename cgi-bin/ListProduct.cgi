@@ -52,7 +52,7 @@ print('</table>')
 print('<br>'*3)
 print('<h1>新增品項</h1>')
 print("""<form action='AddProduct.cgi'>
-         品項名稱:<input type='text' name='pro_name'>
+         品項名稱:<input type='text' name='pro_name' required>
          <input type='hidden' name='sqlpath' value='"""
          +SQL_path+"""' readonly>
          <input type='submit' value='更新'>

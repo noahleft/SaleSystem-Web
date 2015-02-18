@@ -56,7 +56,7 @@ print('</table>')
 print('<br>'*3)
 print('<h1>新增表單</h1>')
 print("""<form action='AddForm.cgi'>
-         表單名字:<input type='text' name='com_name'>
+         表單名字:<input type='text' name='com_name' required>
          <input type='hidden' name='sqlpath' value='"""
          +SQL_path+"""' readonly>
          <input type='submit' value='更新'>

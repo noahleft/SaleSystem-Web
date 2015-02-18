@@ -83,7 +83,7 @@ print("<form action='UpdateUnitPrice.cgi'>"+
       "<input type='hidden' name='sqlpath' value='"+SQL_path+"' readonly>"+
       "公司<select name='comp_id'>\n"+genOptions(companyList)+"</select><br>\n"+ \
       "產品<select name='prod_id'>\n"+genOptions(productList)+"</select><br>\n"+ \
-      "單價<input type='number' name='unit_price' step='any'>\n<br>"+ \
+      "單價<input type='number' name='unit_price' step='any' required>\n<br>"+ \
       "<input type='submit' value='更新'></form>")
 print('<br>'*3)
 

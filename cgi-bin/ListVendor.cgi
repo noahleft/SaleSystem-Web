@@ -52,7 +52,7 @@ print('</table>')
 print('<br>'*3)
 print('<h1>新增廠商</h1>')
 print("""<form action='AddVendor.cgi'>
-         廠商名字:<input type='text' name='com_name'>
+         廠商名字:<input type='text' name='com_name' required>
          <input type='hidden' name='sqlpath' value='"""
          +SQL_path+"""' readonly>
          <input type='submit' value='更新'>
