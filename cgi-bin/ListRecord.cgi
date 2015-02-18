@@ -103,6 +103,7 @@ if form.getvalue('unit_price'):
 else:
   unitStr=''
 
+
 print('<br>'*3)
 print('<h1>新增記錄</h1>')
 print("<form action='AddRecord.cgi' name='AddRecord'>\n"+ \
@@ -115,6 +116,18 @@ print("<form action='AddRecord.cgi' name='AddRecord'>\n"+ \
       "數量<input type='number' name='quantity'><br>\n"+ \
       "日期<input type='date'   name='deliver_date'><br>\n"+ \
       "<input type='submit' name='update' value='更新'></form>")
+print('<br>'*3)
+
+############################
+print('<h1>更新單價</h1>')
+print("<form action='UpdateUnitPrice.cgi' name='UpdateUnitPrice'>"+
+      "<input type='hidden' name='sqlpath' value='"+SQL_path+"' readonly>"+
+      "<input type='hidden' name='form_id' value='"+str(form_id)+"' readonly>\n"+ \
+      "<input type='hidden' name='back' value='"+'ListRecord.cgi'+"' readonly>"+
+      "公司<select name='comp_id'>\n"+genOptions(companyList,comp_initial)+"</select><br>\n"+ \
+      "產品<select name='prod_id'>\n"+genOptions(productList,prod_initial)+"</select><br>\n"+ \
+      "單價<input type='number' name='unit_price' step='any' required>\n<br>"+ \
+      "<input type='submit' value='更新'></form>")
 print('<br>'*3)
 
 print("""<footer id="foot01"></footer>

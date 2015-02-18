@@ -71,7 +71,7 @@ for row in data:
   rowStrings=['<tr>']
   rowStrings+=['<td>'+str(row[2])+'</td>']
   rowStrings+=['<td>'+str(productDict[row[1]])+'</td>']
-  rowStrings+=['<td>'+str(row[4])+'</td>']
+  rowStrings+=['<td>'+str(row[4])+'y</td>']
   rowStrings+=['<td>'+str(row[3])+'</td>']
   rowStrings+=['<td>'+str(price)+'</td>']
   rowStrings+=['</tr>']
