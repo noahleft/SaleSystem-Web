@@ -32,12 +32,13 @@ else:
 
 cursor=conn.cursor()
 showList=['name']
-cursor.execute('SELECT '+','.join(showList)+' FROM company')
+cursor.execute('SELECT '+','.join(showList)+' FROM company ORDER BY NAME')
 data=cursor.fetchall()
 
+viewList=['廠商姓名']
 print('<table>')
 print('<tr>')
-print(''.join(list(map(lambda x:'<th>'+x+'</th>',showList))))
+print(''.join(list(map(lambda x:'<th>'+x+'</th>',viewList))))
 print('</tr>')
 for row in data:
   print('<tr>')
