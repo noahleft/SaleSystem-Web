@@ -60,5 +60,5 @@ def update_db(conn,table_name,element,table_cols,checkList,setList):
     ','.join(list(map(lambda x:str(x[0])+'='+str(x[1]),setList)))+
     ' WHERE '+' and '.join(list(map(lambda x:str(x[0])+'='+str(x[1]),checkList))))
     conn.commit()
-  else:
+  elif element and table_cols:
     insert_db(conn,table_name,element,table_cols)
