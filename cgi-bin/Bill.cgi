@@ -40,9 +40,9 @@ print("""
 <meta charset="UTF-8">
 <link href="../Site.css" rel="stylesheet">
 </head>
-<body>
+<body>""")
 
-<nav id="nav01"></nav>""")
+#(<nav id="nav01"></nav>""")
 print("""
 <div id="main">
   <h1>應收帳款 """+str(companyName)+' '+str(formName)+'</h1>')

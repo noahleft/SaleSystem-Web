@@ -63,7 +63,7 @@ print('</tr>')
 for row in data:
   print('<tr>')
   href='Bill.cgi?form_id='+str(form_id)+'&company_id='+str(row[0])
-  print('<td><a href="'+href+'">')
+  print('<td><a href="'+href+'" target="_blank">')
   print(companyDict[row[0]])
   print('</a></td>')
   print('</tr>')
