@@ -40,10 +40,10 @@ def convertToDict(DataList):
 
 cursor=conn.cursor()
 showList=['id','name']
-cursor.execute('SELECT '+','.join(showList)+' FROM product')
+cursor.execute('SELECT '+','.join(showList)+' FROM product WHERE hide=="FALSE"')
 productList=cursor.fetchall()
 productDict=convertToDict(productList)
-cursor.execute('SELECT '+','.join(showList)+' FROM company')
+cursor.execute('SELECT '+','.join(showList)+' FROM company WHERE hide=="FALSE"')
 companyList=cursor.fetchall()
 companyDict=convertToDict(companyList)
 UPList=['comp_id','prod_id','unit_price']
@@ -55,6 +55,7 @@ print('<table>')
 print('<tr>')
 print(''.join(list(map(lambda x:'<th>'+x+'</th>',showList))))
 print('</tr>')
+unitPriceList=list(filter(lambda x: x[0] in companyDict and x[1] in productDict ,unitPriceList))
 for row in unitPriceList:
   print('<tr>')
   print('<td>'+str(companyDict[row[0]])+'</td>')

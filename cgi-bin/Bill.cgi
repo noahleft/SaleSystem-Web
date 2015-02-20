@@ -50,7 +50,7 @@ print("""
 
 
 showList=['COMP_ID','PROD_ID','DELIVER_DATE','UNIT_PRICE','QUANTITY']
-cursor.execute('SELECT '+','.join(showList)+' FROM record WHERE form_id='+str(form_id)+' and comp_id='+str(company_id)+' ORDER BY DELIVER_DATE')
+cursor.execute('SELECT '+','.join(showList)+' FROM record WHERE form_id='+str(form_id)+' and comp_id='+str(company_id)+' and HIDE=="FALSE" ORDER BY DELIVER_DATE')
 data=cursor.fetchall()
 cursor.execute('SELECT ID,NAME FROM product')
 productList=cursor.fetchall()
@@ -81,12 +81,6 @@ print('</table>')
 print('總計:',int(total_price))
 
 ############################
-
-cursor.execute('SELECT id,name from company;')
-companyList=cursor.fetchall()
-cursor.execute('SELECT id,name from product;')
-productList=cursor.fetchall()
-
 
 print("""<footer id="foot01"></footer>
 </div>

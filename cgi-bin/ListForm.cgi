@@ -32,7 +32,7 @@ else:
 
 cursor=conn.cursor()
 showList=['id','name']
-cursor.execute('SELECT '+','.join(showList)+' FROM form')
+cursor.execute('SELECT '+','.join(showList)+' FROM form WHERE hide=="FALSE"')
 data=cursor.fetchall()
 
 print('<table>')

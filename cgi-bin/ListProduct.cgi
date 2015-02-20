@@ -32,7 +32,7 @@ else:
 
 cursor=conn.cursor()
 showList=['name']
-cursor.execute('SELECT '+','.join(showList)+' FROM product ORDER BY NAME')
+cursor.execute('SELECT '+','.join(showList)+' FROM product WHERE HIDE=="FALSE" ORDER BY NAME')
 data=cursor.fetchall()
 
 viewList=['品項名字']
