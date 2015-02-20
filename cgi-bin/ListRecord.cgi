@@ -106,16 +106,16 @@ else:
 
 print('<br>'*3)
 print('<h1>新增記錄</h1>')
-print("<form action='AddRecord.cgi' name='AddRecord'>\n"+ \
+print("<form action='AddRecord.cgi' name='AddRecord' onsubmit='return validateForm(this.submit)'>\n"+ \
       "<input type='hidden' name='sqlpath' value='"+SQL_path+"' readonly>\n"+ \
       "<input type='hidden' name='form_id' value='"+str(form_id)+"' readonly>\n"+ \
       "公司<select name='comp_id'>\n"+genOptions(companyList,comp_initial)+"</select><br>\n"+ \
       "產品<select name='prod_id'>\n"+genOptions(productList,prod_initial)+"</select><br>\n"+ \
       "單價<input type='number' name='unit_price' step='any' readonly"+unitStr+">\n"+ \
-      "<input type='submit' name='load' value='讀取'><br>"+ \
+      "<input type='submit' name='load' value='讀取' onclick='this.form.submited=this.name;'><br>"+ \
       "數量<input type='number' name='quantity'><br>\n"+ \
       "日期<input type='date'   name='deliver_date'><br>\n"+ \
-      "<input type='submit' name='update' value='更新'></form>")
+      "<input type='submit' name='update' value='更新' onclick='this.form.submited=this.name'></form>")
 print('<br>'*3)
 
 ############################
@@ -134,7 +134,7 @@ print("""<footer id="foot01"></footer>
 </div>
 
 <script src="../Script.js"></script>
-
+<script src='../AddRecordCheck.js'></script>
 </body>
 </html>""")
 

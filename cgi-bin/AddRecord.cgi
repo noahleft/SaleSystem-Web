@@ -6,7 +6,6 @@ import cgi
 form=cgi.FieldStorage()
 
 if form.getvalue('load'):
-  print("Content-type: text/html",end='\n\n')
   company_id=form.getvalue('comp_id')
   product_id=form.getvalue('prod_id')
   form_id=form.getvalue('form_id')
