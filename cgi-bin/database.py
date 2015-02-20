@@ -8,16 +8,19 @@ def create_db(name):
   cursor.execute('''CREATE TABLE IF NOT EXISTS company
                     (ID    INTEGER PRIMARY KEY AUTOINCREMENT,
                      NAME  TEXT NOT NULL,
+                     HIDE  BOOLEAN NOT NULL DEFAULT FALSE,
                      UNIQUE(NAME));
                  ''')
   cursor.execute('''CREATE TABLE IF NOT EXISTS product
                     (ID    INTEGER PRIMARY KEY AUTOINCREMENT,
                      NAME  TEXT NOT NULL,
+                     HIDE  BOOLEAN NOT NULL DEFAULT FALSE,
                      UNIQUE(NAME));
                  ''')
   cursor.execute('''CREATE TABLE IF NOT EXISTS form
                     (ID    INTEGER PRIMARY KEY AUTOINCREMENT,
                      NAME  TEXT NOT NULL,
+                     HIDE  BOOLEAN NOT NULL DEFAULT FALSE,
                      UNIQUE(NAME));
                  ''')
   cursor.execute('''CREATE TABLE IF NOT EXISTS unitprice
@@ -34,7 +37,8 @@ def create_db(name):
                      CREATED_DATE DATETIME NOT NULL,
                      DELIVER_DATE DATETIME NOT NULL,
                      UNIT_PRICE   REAL     NOT NULL,
-                     QUANTITY     INTEGER  NOT NULL);
+                     QUANTITY     INTEGER  NOT NULL,
+                     HIDE  BOOLEAN NOT NULL DEFAULT FALSE);
                  ''')
   conn.commit()
   return conn
