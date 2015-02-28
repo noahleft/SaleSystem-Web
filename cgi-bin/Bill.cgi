@@ -59,8 +59,12 @@ productDict=convertToDict(productList)
 
 print('<table>')
 print('<tr>')
-showChList=['日期','品項','數量','單價','小計']
-print(''.join(list(map(lambda x:'<th>'+x+'</th>',showChList))))
+showChList=[('class="dateTime"','日期'), \
+            ('class="productName"','品項'), \
+            ('class="quantity"','數量'), \
+            ('class="price"','單價'), \
+            ('class="price"','小計')]
+print(''.join(list(map(lambda x:'<th '+x[0]+'>'+x[1]+'</th>',showChList))))
 print('</tr>')
 total_price=0
 for row in data:
@@ -71,9 +75,9 @@ for row in data:
   rowStrings=['<tr>']
   rowStrings+=['<td class="dateTime">'+str(row[2])+'</td>']
   rowStrings+=['<td class="productName">'+str(productDict[row[1]])+'</td>']
-  rowStrings+=['<td>'+str(row[4])+'y</td>']
-  rowStrings+=['<td>'+str(row[3])+'</td>']
-  rowStrings+=['<td>'+str(price)+'</td>']
+  rowStrings+=['<td class="quantity">'+str(row[4])+'y</td>']
+  rowStrings+=['<td class="price">'+str(row[3])+'</td>']
+  rowStrings+=['<td class="price">'+str(price)+'</td>']
   rowStrings+=['</tr>']
   print(''.join(rowStrings))
 print('</table>')

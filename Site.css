@@ -1,6 +1,6 @@
 body {
     font: "Trebuchet MS", Verdana, sans-serif;
-    font-size: 16px;
+    font-size: 14px;
     background-color: dimgrey;
     color: #696969;
     padding: 3px;
@@ -31,17 +31,6 @@ table, th , td {
     padding: 5px;
 }
 
-th.noBorder,td.noBorder{
-  border: 1px solid white;
-  border-right: 1px solid grey;
-  border-collapse: collapse;
-  width: 40px;
-  height: 40px;
-  background-color: white;
-  text-align: center;
-  padding: 0px;
-}
-
 th {
     text-align: left;
 }
@@ -53,7 +42,7 @@ table tr:nth-child(even) {
     background-color: #ffffff;
 }
 
-td.dateTime {
+td.dateTime th.dateTime{
   border: 1px transparent;
   border-collapse: collapse;
   width: 100px;
@@ -61,27 +50,24 @@ td.dateTime {
   padding: 0px;
 }
 
-td.productName {
+td.productName th.productName{
   border: 1px solid;
-  border-bottom: 1px transparent;
   border-collapse: collapse;
   width: 200px;
   height: 5px;
   padding: 0px;
 }
 
-td.quantity {
+td.quantity th.quantity{
   border: 1px solid;
-  border-right: 1px transparent;
   border-collapse: collapse;
   width: 100px;
   height: 5px;
   padding: 0px;
 }
 
-td.price {
+td.price th.price{
   border: 1px solid;
-  border-left: 1px transparent;
   border-collapse: collapse;
   width: 100px;
   height: 5px;
