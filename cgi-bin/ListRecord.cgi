@@ -63,9 +63,13 @@ print('<tr>')
 showChList=['公司','日期','品項','單價','數量']
 print(''.join(list(map(lambda x:'<th>'+x+'</th>',showChList))))
 print('</tr>')
+
+def convertDate(date):
+  return str(int(date[:4])-1911)+date[4:]
+
 for row in data:
   rowStrings=['<tr><td>'+str(companyDict[row[0]])+'</td>']
-  rowStrings+=['<td>'+str(row[2])+'</td>']
+  rowStrings+=['<td>'+str(convertDate(row[2]))+'</td>']
   rowStrings+=['<td>'+str(productDict[row[1]])+'</td>']
   rowStrings+=['<td>'+str(row[3])+'</td>']
   rowStrings+=['<td>'+str(row[4])+'</td>']

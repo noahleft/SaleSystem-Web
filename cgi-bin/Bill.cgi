@@ -57,6 +57,9 @@ productList=cursor.fetchall()
 productDict=convertToDict(productList)
 
 
+def convertDate(date):
+  return str(int(date[:4])-1911)+date[4:]
+
 print('<table>')
 print('<tr>')
 showChList=[('class="dateTime"','日期'), \
@@ -73,7 +76,7 @@ for row in data:
   price=unit_price*quantity
   total_price+=price
   rowStrings=['<tr>']
-  rowStrings+=['<td class="dateTime">'+str(row[2])+'</td>']
+  rowStrings+=['<td class="dateTime">'+str(convertDate(row[2]))+'</td>']
   rowStrings+=['<td class="productName">'+str(productDict[row[1]])+'</td>']
   rowStrings+=['<td class="quantity">'+str(row[4])+'y</td>']
   rowStrings+=['<td class="price">'+str(row[3])+'</td>']
