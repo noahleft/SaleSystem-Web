@@ -46,7 +46,7 @@ print("""
 
 
 
-showList=['COMP_ID','PROD_ID','DELIVER_DATE','UNIT_PRICE','QUANTITY']
+showList=['COMP_ID','PROD_ID','DELIVER_DATE','UNIT_PRICE','QUANTITY','ID']
 cursor.execute('SELECT '+','.join(showList)+' FROM record WHERE form_id='+str(form_id)+' AND hide=="FALSE" ORDER BY DELIVER_DATE')
 data=cursor.fetchall()
 #select everything because the past record may contained deleted company/product
@@ -60,7 +60,7 @@ productDict=convertToDict(productList)
 
 print('<table>')
 print('<tr>')
-showChList=['公司','日期','品項','單價','數量']
+showChList=['編號','公司','日期','品項','單價','數量']
 print(''.join(list(map(lambda x:'<th>'+x+'</th>',showChList))))
 print('</tr>')
 
@@ -68,7 +68,8 @@ def convertDate(date):
   return str(int(date[:4])-1911)+date[4:]
 
 for row in data:
-  rowStrings=['<tr><td>'+str(companyDict[row[0]])+'</td>']
+  rowStrings=['<tr><td>'+str(row[5])+'</td>']
+  rowStrings+=['<td>'+str(companyDict[row[0]])+'</td>']
   rowStrings+=['<td>'+str(convertDate(row[2]))+'</td>']
   rowStrings+=['<td>'+str(productDict[row[1]])+'</td>']
   rowStrings+=['<td>'+str(row[3])+'</td>']
