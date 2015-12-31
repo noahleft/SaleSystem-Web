@@ -63,6 +63,40 @@ print("""<form action='AddForm.cgi'>
          </form>""")
 print('<br>'*3)
 
+###########################
+
+from common import genOptions
+
+print('<br>'*3)
+print('<h1>刪除表單</h1>')
+print('<p><a href="javascript:disable_enable()">啟用</a>刪除功能</p>')
+print("<form name='rmForm' action='RmForm.cgi' onsubmit='return validateRmForm()'>"+
+      "將表單:<select name='com_id' disabled='disabled' required>\n"+
+      "<option disabled selected value='-1'> -- select an option -- </option>"
+      +genOptions(data)+"</select>"+
+      "<input type='hidden' name='sqlpath' value='"+SQL_path+"""' readonly>
+      <input name='submit' type='submit' value='刪除' disabled="disabled">
+      </form>""")
+print('<br>'*3)
+
+print("""
+<script type="text/javascript">
+function disable_enable(){
+      document.rmForm.com_id.disabled=!document.rmForm.com_id.disabled
+      document.rmForm.submit.disabled=!document.rmForm.submit.disabled
+}
+</script>
+<script>
+function validateRmForm() {
+  var x = document.forms["rmForm"]["com_id"].value;
+  if (x == -1) {
+    alert("you must select a form");
+    return false;
+  }
+}
+</script>
+""")
+
 print("""<footer id="foot01"></footer>
 </div>
 

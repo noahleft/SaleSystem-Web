@@ -47,6 +47,10 @@ def link_db(name):
   conn=sqlite3.connect(name)
   return conn
 
+def hidden_db(conn,table_name,row_id):
+  cursor=conn.cursor()
+  cursor.execute('UPDATE '+table_name+' SET HIDE=1 '+' WHERE ID='+str(row_id)+';')
+  conn.commit()
 
 def insert_db(conn,table_name,element,table_cols=["name"]):
   cursor=conn.cursor()
