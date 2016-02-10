@@ -47,7 +47,8 @@ print("""
 
 
 showList=['COMP_ID','PROD_ID','DELIVER_DATE','UNIT_PRICE','QUANTITY','ID']
-cursor.execute('SELECT '+','.join(showList)+' FROM record WHERE form_id='+str(form_id)+' AND hide!=1 ORDER BY DELIVER_DATE')
+#cursor.execute('SELECT '+','.join(showList)+' FROM record WHERE form_id='+str(form_id)+' AND hide!=1 ORDER BY DELIVER_DATE')
+cursor.execute('SELECT '+','.join(showList)+' FROM record WHERE form_id='+str(form_id)+' AND hide!=1 ORDER BY ID DESC')
 data=cursor.fetchall()
 #select everything because the past record may contained deleted company/product
 cursor.execute('SELECT ID,NAME FROM company')
