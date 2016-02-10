@@ -47,7 +47,7 @@ print("""
 
 
 showList=['COMP_ID','PROD_ID','DELIVER_DATE','UNIT_PRICE','QUANTITY','ID']
-cursor.execute('SELECT '+','.join(showList)+' FROM record WHERE form_id='+str(form_id)+' AND hide=="FALSE" ORDER BY DELIVER_DATE')
+cursor.execute('SELECT '+','.join(showList)+' FROM record WHERE form_id='+str(form_id)+' AND hide!=1 ORDER BY DELIVER_DATE')
 data=cursor.fetchall()
 #select everything because the past record may contained deleted company/product
 cursor.execute('SELECT ID,NAME FROM company')
@@ -80,9 +80,9 @@ print('</table>')
 
 ############################
 
-cursor.execute('SELECT id,name from company WHERE hide=="FALSE";')
+cursor.execute('SELECT id,name from company WHERE hide!=1;')
 companyList=cursor.fetchall()
-cursor.execute('SELECT id,name from product WHERE hide=="FALSE";')
+cursor.execute('SELECT id,name from product WHERE hide!=1;')
 productList=cursor.fetchall()
 
 def genOptions(dataList,initial=1):
