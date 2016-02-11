@@ -47,7 +47,7 @@ print("""
 
 
 showList=['COMP_ID']
-cursor.execute('SELECT '+','.join(showList)+' FROM record WHERE form_id='+str(form_id)+' AND hide=="FALSE"')
+cursor.execute('SELECT '+','.join(showList)+' FROM record WHERE form_id='+str(form_id)+' AND hide!=1')
 data=set(cursor.fetchall())
 cursor.execute('SELECT ID,NAME FROM company')
 companyList=cursor.fetchall()

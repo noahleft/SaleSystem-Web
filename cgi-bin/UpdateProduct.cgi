@@ -32,7 +32,7 @@ else:
 
 cursor=conn.cursor()
 showList=['name']
-cursor.execute('SELECT '+','.join(showList)+' FROM product WHERE hide=="FALSE" ORDER BY NAME')
+cursor.execute('SELECT '+','.join(showList)+' FROM product WHERE hide!=1 ORDER BY NAME')
 data=cursor.fetchall()
 
 viewList=['品項名字']
@@ -61,7 +61,7 @@ def genOptions(dataList,initial=1):
   return '\n'.join(list(strList))
 
 
-cursor.execute('SELECT ID,NAME FROM product WHERE hide=="FALSE"')
+cursor.execute('SELECT ID,NAME FROM product WHERE hide!=1')
 productList=cursor.fetchall()
 
 ############################
