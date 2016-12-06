@@ -1,0 +1,84 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>單價列表</title>
+<meta charset="UTF-8">
+<link href="../Site.css" rel="stylesheet">
+</head>
+<body>
+
+<nav id="nav01"></nav>
+
+<div id="main">
+  <h1>單價列表</h1>
+<table>
+<tr>
+<th>comp</th><th>prod</th><th>unit_price</th>
+</tr>
+<tr>
+<td>Apple</td>
+<td>Meat</td>
+<td>10.0</td>
+</tr>
+<tr>
+<td>Apple</td>
+<td>Water</td>
+<td>3.0</td>
+</tr>
+<tr>
+<td>Apple</td>
+<td>Flower</td>
+<td>15.0</td>
+</tr>
+<tr>
+<td>Bee</td>
+<td>Meat</td>
+<td>8.0</td>
+</tr>
+<tr>
+<td>Bee</td>
+<td>Water</td>
+<td>3.5</td>
+</tr>
+<tr>
+<td>Bee</td>
+<td>Flower</td>
+<td>18.0</td>
+</tr>
+<tr>
+<td>Cat</td>
+<td>Meat</td>
+<td>12.0</td>
+</tr>
+<tr>
+<td>Cat</td>
+<td>Water</td>
+<td>4.0</td>
+</tr>
+<tr>
+<td>Cat</td>
+<td>Flower</td>
+<td>13.0</td>
+</tr>
+</table>
+<br><br><br>
+<h1>更新單價</h1>
+<form action='../link.html'><input type='hidden' name='sqlpath' value='sample.db' readonly>公司<select name='comp_id'>
+<option value="1" selected>Apple</option>
+<option value="2">Bee</option>
+<option value="3">Cat</option></select><br>
+產品<select name='prod_id'>
+<option value="1" selected>Meat</option>
+<option value="2">Water</option>
+<option value="3">Flower</option></select><br>
+單價<input type='number' name='unit_price' step='any' required>
+<br><input type='submit' value='更新'></form>
+<br><br><br>
+<footer id="foot01"></footer>
+</div>
+
+<script src="../Script.js"></script>
+
+</body>
+</html>

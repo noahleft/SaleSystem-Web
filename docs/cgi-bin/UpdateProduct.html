@@ -1,0 +1,48 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>品項列表</title>
+<meta charset="UTF-8">
+<link href="../Site.css" rel="stylesheet">
+</head>
+<body>
+
+<nav id="nav01"></nav>
+
+<div id="main">
+  <h1>品項列表</h1>
+<table>
+<tr>
+<th>品項名字</th>
+</tr>
+<tr>
+<td>
+Flower
+</td>
+</tr>
+<tr>
+<td>
+Meat
+</td>
+</tr>
+<tr>
+<td>
+Water
+</td>
+</tr>
+</table>
+<br><br><br>
+<h1>品項更名</h1>
+<form action='../link.html'>將品項:<select name='prod_id'>
+<option value="1" selected>Meat</option>
+<option value="2">Water</option>
+<option value="3">Flower</option></select>更改成<input type='text' name='pro_name' required><input type='hidden' name='sqlpath' value='sample.db' readonly><input type='submit' value='更新'></form>
+<br><br><br>
+<footer id="foot01"></footer>
+</div>
+
+<script src="../Script.js"></script>
+
+</body>
+</html>
