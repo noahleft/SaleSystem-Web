@@ -1,0 +1,74 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>表單列表</title>
+<meta charset="UTF-8">
+<link href="Site.css" rel="stylesheet">
+</head>
+<body>
+
+<nav id="nav01"></nav>
+
+<div id="main">
+  <h1>表單列表</h1>
+<table>
+<tr>
+<th>name</th><th>bill</th>
+</tr>
+<tr>
+<td>
+<a href="ListRecord.cgi?form_id=2">
+Form2
+</a></td>
+<td><a href="DumpRecord.cgi?form_id=2">產生</a></td>
+</tr>
+<tr>
+<td>
+<a href="ListRecord.cgi?form_id=1">
+Form1
+</a></td>
+<td><a href="DumpRecord.cgi?form_id=1">產生</a></td>
+</tr>
+</table>
+<br><br><br>
+<h1>新增表單</h1>
+<form action='link.html'>
+         表單名字:<input type='text' name='com_name' required>
+         <input type='hidden' name='sqlpath' value='sample.db' readonly>
+         <input type='submit' value='更新'>
+         </form>
+<br><br><br>
+<br><br><br>
+<h1>刪除表單</h1>
+<p><a href="javascript:disable_enable()">啟用</a>刪除功能</p>
+<form name='rmForm' action='link.html' onsubmit='return validateRmForm()'>將表單:<select name='com_id' disabled='disabled' required>
+<option disabled selected value='-1'> -- select an option -- </option><option value="2">FORM2</option>
+<option value="1" selected>Form1</option></select><input type='hidden' name='sqlpath' value='sample.db' readonly>
+      <input name='submit' type='submit' value='刪除' disabled="disabled">
+      </form>
+<br><br><br>
+
+<script type="text/javascript">
+function disable_enable(){
+      document.rmForm.com_id.disabled=!document.rmForm.com_id.disabled
+      document.rmForm.submit.disabled=!document.rmForm.submit.disabled
+}
+</script>
+<script>
+function validateRmForm() {
+  var x = document.forms["rmForm"]["com_id"].value;
+  if (x == -1) {
+    alert("you must select a form");
+    return false;
+  }
+}
+</script>
+
+<footer id="foot01"></footer>
+</div>
+
+<script src="Script.js"></script>
+
+</body>
+</html>
