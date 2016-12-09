@@ -1,17 +1,16 @@
-
 <!DOCTYPE html>
 <html>
 <head>
 <title>紀錄</title>
 <meta charset="UTF-8">
-<link href="../Site.css" rel="stylesheet">
+<link href="Site.css" rel="stylesheet">
 </head>
 <body>
 
 <nav id="nav01"></nav>
 <div id="main">
 <h1>新增記錄</h1>
-<form action='AddRecord.cgi' name='AddRecord' onsubmit='return validateForm(this.submit)'>
+<form action='link.html' name='AddRecord' onsubmit='return validateForm(this.submit)'>
 <input type='hidden' name='sqlpath' value='sample.db' readonly>
 <input type='hidden' name='form_id' value='1' readonly>
 公司<select name='comp_id'>
@@ -40,8 +39,8 @@
 <tr><td>1</td><td>Apple</td><td>105-09-04</td><td>Meat</td><td>10.0</td><td>100</td></tr>
 </table>
 <h1>更新單價</h1>
-<form action='UpdateUnitPrice.cgi' name='UpdateUnitPrice'><input type='hidden' name='sqlpath' value='sample.db' readonly><input type='hidden' name='form_id' value='1' readonly>
-<input type='hidden' name='back' value='ListRecord.cgi' readonly>公司<select name='comp_id'>
+<form action='link.html' name='UpdateUnitPrice'><input type='hidden' name='sqlpath' value='sample.db' readonly><input type='hidden' name='form_id' value='1' readonly>
+<input type='hidden' name='back' value='link.html' readonly>公司<select name='comp_id'>
 <option value="1" selected>Apple</option>
 <option value="2">Bee</option>
 <option value="3">Cat</option></select><br>
